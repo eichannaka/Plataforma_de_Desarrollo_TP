@@ -1,0 +1,67 @@
+.container__footer {
+    width: 100%;
+    padding: 40px 0;
+    background: #E7D3BB;
+    margin-top: 40px;
+}
+
+.container__footer .logo__footer {
+    text-align: center;
+}
+
+.container__footer .logo__footer img {
+    width: 250px;
+}
+
+.container__footer .redes__footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.container__footer .redes__footer a {
+    text-decoration: none;
+}
+
+.icon__redes {
+    /* Assuming %iconos is a placeholder that is defined somewhere else in your Sass file */
+    /* Replace %iconos with the actual CSS properties that it represents */
+    /* Example: */
+    /* display: inline-block;
+       margin-right: 10px;
+       font-size: 20px; */
+}
+
+.container__footer h4 {
+    justify-content: end;
+    font-family: 'Montserrat';
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 40px;
+    color: #d3d3d3;
+    font-weight: 500;
+}
+
+.bi-facebook:hover {
+    background-color: #3b5998;
+    color: white;
+    transition: 0.3s;
+}
+
+.bi-instagram:hover {
+    background-color: #c13584;
+    color: white;
+    transition: 0.3s;
+}
+
+.bi-handshake:hover {
+    background-color: #ecb731;
+    color: white;
+    transition: 0.3s;
+}
+
+.bi-youtube:hover {
+    background-color: #ff0000;
+    color: white;
+    transition: 0.3s;
+}

@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "userType": "Paciente",
+        "firstName": "Juan",
+        "lastName": "Perez",
+        "email": "paciente1@example.com",
+        "password": "paciente123"
+    },
+    {
+        "id": 2,
+        "userType": "Masajista",
+        "firstName": "Ana",
+        "lastName": "Lopez",
+        "email": "masajista1@example.com",
+        "password": "masajista123"
+    },
+    {
+        "id": 3,
+        "userType": "Administrador",
+        "firstName": "Carlos",
+        "lastName": "Garcia",
+        "email": "admin1@example.com",
+        "password": "admin123"
+    },
+    {
+        "id": 4,
+        "userType": "Paciente",
+        "firstName": "Maria",
+        "lastName": "Rodriguez",
+        "email": "paciente2@example.com",
+        "password": "paciente456"
+    },
+    {
+        "id": 5,
+        "userType": "Masajista",
+        "firstName": "Pedro",
+        "lastName": "Martinez",
+        "email": "masajista2@example.com",
+        "password": "masajista456"
+    },
+    {
+        "id": 6,
+        "userType": "Administrador",
+        "firstName": "Lucia",
+        "lastName": "Gomez",
+        "email": "admin2@example.com",
+        "password": "admin456"
+    },
+    {
+        "id": 7,
+        "userType": "Paciente",
+        "firstName": "Luis",
+        "lastName": "Hernandez",
+        "email": "paciente3@example.com",
+        "password": "paciente789"
+    },
+    {
+        "id": 8,
+        "userType": "Masajista",
+        "firstName": "Elena",
+        "lastName": "Diaz",
+        "email": "masajista3@example.com",
+        "password": "masajista789"
+    },
+    {
+        "id": 9,
+        "userType": "Administrador",
+        "firstName": "Miguel",
+        "lastName": "Fernandez",
+        "email": "admin3@example.com",
+        "password": "admin789"
+    },
+    {
+        "id": 10,
+        "userType": "Paciente",
+        "firstName": "Sara",
+        "lastName": "Ruiz",
+        "email": "paciente4@example.com",
+        "password": "pacienteabc"
+    }
+]
