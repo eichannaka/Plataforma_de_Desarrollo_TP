@@ -19,7 +19,7 @@ const Footer = () => {
                         <i className="bi bi-youtube icon__redes"></i>
                     </a>
                 </div>
-                <h4>
+                <h4 > 
                     © 2024 Kimochii Studio - Todos los derechos reservados.
                 </h4>
             </footer>

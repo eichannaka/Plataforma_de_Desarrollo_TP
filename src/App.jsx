@@ -12,16 +12,17 @@ import Footer from './components/Layout/Footer.jsx';
 
 //Paginas
 import Home from './components/pages/Home.jsx';
-import ServiceList from './components/pages/serviceList/ServiceList.jsx';
+import ServiceList from './components/pages/service/serviceList/ServiceList.jsx';
 import About from './components/pages/About.jsx';
 import Contact from './components/pages/Contact.jsx';
 import NotFound from './components/pages/NotFound.jsx';
 import Login from './components/pages/Login.jsx';
 
 //Dashboards de usuarios
-import DashboardPatient from './components/pages/Dashboard/DashboardPatient.jsx';
-import DashboardAdmin from './components/pages/Dashboard/DashboardAdmin.jsx';
-import DashboardTherapist from './components/pages/Dashboard/DashboardTherapist.jsx';
+import DashboardPatient from './components/pages/Dashboard/DashboardPatient/DashboardPatient.jsx';
+import DashboardAdmin from './components/pages/Dashboard/DashboardAdmin/DashboardAdmin.jsx';
+import DashboardTherapist from './components/pages/Dashboard/DashboardTherapist/DashboardTherapist.jsx';
+
 //Contexto
 import { AuthProvider } from './contexts/AuthContext.jsx';
 import ProtectedRouter from './contexts/ProtectedRouter.jsx';

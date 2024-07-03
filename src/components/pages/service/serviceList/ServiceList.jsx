@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ServiceItem from '../serviceItem/ServiceItem';
-import serviceDB from "../../../db/servicesDb.json";
+import serviceDB from "../../../../db/servicesDb.json";
 
 const ServiceList = () => {
     return (
