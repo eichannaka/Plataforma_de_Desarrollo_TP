@@ -17,8 +17,11 @@ import About from './components/pages/About.jsx';
 import Contact from './components/pages/Contact.jsx';
 import NotFound from './components/pages/NotFound.jsx';
 import Login from './components/pages/Login.jsx';
-import Dashboard from './components/pages/Dashboard.jsx';
 
+//Dashboards de usuarios
+import DashboardPatient from './components/pages/Dashboard/DashboardPatient.jsx';
+import DashboardAdmin from './components/pages/Dashboard/DashboardAdmin.jsx';
+import DashboardTherapist from './components/pages/Dashboard/DashboardTherapist.jsx';
 //Contexto
 import { AuthProvider } from './contexts/AuthContext.jsx';
 import ProtectedRouter from './contexts/ProtectedRouter.jsx';
@@ -36,9 +39,19 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={
+              <Route path="/dashboardAdmin" element={
                 <ProtectedRouter>
-                  <Dashboard />
+                  <DashboardAdmin />
+                </ProtectedRouter>
+              } />
+              <Route path="/dashboardPatient" element={
+                <ProtectedRouter>
+                  <DashboardPatient />
+                </ProtectedRouter>
+              } />
+              <Route path="/dashboardTherapist" element={
+                <ProtectedRouter>
+                  <DashboardTherapist />
                 </ProtectedRouter>
               } />
               <Route path="*" element={<NotFound />} />

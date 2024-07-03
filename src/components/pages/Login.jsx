@@ -1,24 +1,35 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import db from '../../db/db.json'; 
+import db from '../../db/db.json';
 
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState('');
   const [error, setError] = useState('');
 
   const handlerLogin = () => {
-    const user = db.find(user => user.email === email && user.password === password);
-    if (user) {
+  const user = db.find(user => user.email === email && user.password === password);
+
+  if (user) {
+    if (user.userType === "Administrador") {
       login(user);
-      navigate("/dashboard");
-    } else {
-      setError("El mail y/o la contraseña son incorrectas");
+      navigate("/dashboardAdmin"); 
+    } else if (user.userType === "Paciente") {
+      login(user);
+      navigate("/dashboardPatient"); 
+    } else if (user.userType === "Masajista") {
+      login(user);
+      navigate("/dashboardTherapist"); 
     }
-  };
+  } else {
+    setError("El email y/o la contraseña son incorrectos");
+  }
+};
+
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>

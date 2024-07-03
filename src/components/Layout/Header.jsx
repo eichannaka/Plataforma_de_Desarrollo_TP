@@ -15,8 +15,9 @@ const Header = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link className="navbar-brand" to="/">
-                <img src="../../public/img/Logo.jpg" alt="Logo" style={{ height: '30px' }} />
+                <img src="../../public/img/Logo-Kimochii.png" alt="Logo" style={{ height: '30px' }} />
             </Link>
+
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
@@ -26,8 +27,9 @@ const Header = () => {
                         <Link className="nav-link" to="/services">Servicios</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/about">Sobre Nosotros</Link>
+                        <Link className="nav-link" to="/about">Nosotros</Link>
                     </li>
+
                     <li className="nav-item">
                         <Link className="nav-link" to="/contact">Contacto</Link>
                     </li>

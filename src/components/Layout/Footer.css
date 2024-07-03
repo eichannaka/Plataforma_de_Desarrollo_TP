@@ -1,7 +1,7 @@
 .container__footer {
     width: 100%;
     padding: 40px 0;
-    background: #E7D3BB;
+    background: #e9d2b8;;
     margin-top: 40px;
 }
 
@@ -24,12 +24,13 @@
 }
 
 .icon__redes {
-    /* Assuming %iconos is a placeholder that is defined somewhere else in your Sass file */
-    /* Replace %iconos with the actual CSS properties that it represents */
-    /* Example: */
-    /* display: inline-block;
-       margin-right: 10px;
-       font-size: 20px; */
+    font-size: 24px;
+    color: #000; 
+    display: inline-block;
+    margin: 10px;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: background-color 0.3s, color 0.3s; 
 }
 
 .container__footer h4 {
@@ -45,23 +46,14 @@
 .bi-facebook:hover {
     background-color: #3b5998;
     color: white;
-    transition: 0.3s;
 }
 
 .bi-instagram:hover {
     background-color: #c13584;
     color: white;
-    transition: 0.3s;
-}
-
-.bi-handshake:hover {
-    background-color: #ecb731;
-    color: white;
-    transition: 0.3s;
 }
 
 .bi-youtube:hover {
     background-color: #ff0000;
     color: white;
-    transition: 0.3s;
 }
