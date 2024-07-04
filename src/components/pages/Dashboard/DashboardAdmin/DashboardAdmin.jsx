@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import db from '../../../../db/db.json'; 
+import db from '../../../../db/db.json';
 import DashboardAdminList from './DashboardAdminList';
 
 const DashboardAdmin = () => {
-  const [users, setUsers] = useState(db); 
+  const [users, setUsers] = useState(db);
   const [newUser, setNewUser] = useState({
     userType: '',
     firstName: '',
@@ -38,6 +38,8 @@ const DashboardAdmin = () => {
   return (
     <div className="container">
       <h2 className='mt-4'>Panel de administrador</h2>
+      <br />
+      <h3>Crear usuario</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group mt-3">
           <label htmlFor="userType">Tipo de usuario</label>
@@ -98,7 +100,7 @@ const DashboardAdmin = () => {
           Agregar usuario
         </button>
       </form>
-      <DashboardAdminList users={users}/>
+      <DashboardAdminList users={users} />
     </div>
   );
 };
