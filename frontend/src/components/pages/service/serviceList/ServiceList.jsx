@@ -5,7 +5,7 @@ import serviceDB from "../../../../db/servicesDb.json";
 const ServiceList = () => {
     return (
         <div>
-            <div className="d-flex flex-wrap justify-content-between p-4">
+            <div className="d-flex flex-wrap justify-content-between p-4 ">
                 {serviceDB.map((servicio) => (
                     <ServiceItem
                         key={servicio.id}

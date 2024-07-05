@@ -7,7 +7,7 @@ const ServiceItem = ({ terapia, tiempo, descripcion, precioLista, precioEfectivo
     };
 
     return (
-        <div className="card mt-5 shadow-sm custom-card" style={cardStyle}>
+        <div className="card m-3 shadow-sm custom-card" style={cardStyle}>
             <div className="card-body">
                 <h5 className="card-title custom-text">{terapia}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{tiempo}</h6>
