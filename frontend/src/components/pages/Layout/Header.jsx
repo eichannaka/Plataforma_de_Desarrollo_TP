@@ -1,31 +1,30 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../../contexts/AuthContext';
 import './Header.css';
-import db from '../../db/db.json';
-import Login from '../pages/Login';
 
 const Header = () => {
     const { logueado, user, logout } = useAuth();
     const navigate = useNavigate();
+    
     // Agregar logs para verificar los valores
     console.log("Header Component - logueado:", logueado);
     console.log("Header Component - user:", user);
+    
     const handlerLogout = () => {
         logout();
         navigate("/login");
     };
 
     const handlerNavDashboard = () => {
-        if (user.userType === "Administrador") {
-            return navigate("/dashboardAdmin");
-        } else if (user.userType === "Paciente") {
-            return navigate("/dashboardPatient");
-        } else if (user.userType === "Masajista") {
-            return navigate("/dashboardTherapist");
+        if (user && user.userType === "Administrador") {
+            navigate("/dashboardAdmin");
+        } else if (user && user.userType === "Paciente") {
+            navigate("/dashboardPatient");
+        } else if (user && user.userType === "Masajista") {
+            navigate("/dashboardTherapist");
         }
-
-    }
+    };
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -51,7 +50,7 @@ const Header = () => {
                     {logueado ? (
                         <>
                             <li className="nav-item">
-                                <Link className="nav-link" to="#" onClick={handlerNavDashboard}>Panel</Link>
+                                <a href="#" className="nav-link" onClick={handlerNavDashboard}>Panel</a>
                             </li>
                             <li className="nav-item">
                                 <span className="nav-link">{user.firstName} ({user.userType}) </span>
@@ -72,3 +71,4 @@ const Header = () => {
 };
 
 export default Header;
+``

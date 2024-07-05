@@ -7,8 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 //Layout
-import Header from './components/Layout/Header.jsx';
-import Footer from './components/Layout/Footer.jsx';
+import Header from './components/pages/Layout/Header.jsx';
+import Footer from './components/pages/Layout/Footer.jsx';
 
 //Paginas
 import Home from './components/pages/Home.jsx';
