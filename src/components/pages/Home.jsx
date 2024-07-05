@@ -3,7 +3,7 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <div className="container-fluid vh-100 d-flex align-items-center" style={{ backgroundColor: '#c77e25', fontFamily: 'Roboto, sans-serif' }}>
+    <div className="container-fluid vh-100 d-flex align-items-center" style={{ fontFamily: 'Roboto, sans-serif' }}>
       <div className="row w-100">
         <div className="col-md-6 d-flex flex-column justify-content-center p-3 text-white">
           <h1>Kimochii Studio</h1>

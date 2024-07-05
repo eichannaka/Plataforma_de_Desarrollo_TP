@@ -1,0 +1,14 @@
+.custom-card {
+    width: 18rem;
+    border-radius: 10px;
+    border: none;
+}
+
+.custom-text {
+    color: #4A4A4A;
+}
+
+.custom-btn {
+    background-color: #4A4A4A;
+    border-color: #4A4A4A;
+}

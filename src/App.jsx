@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 
-//bootstrap
+//Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -32,8 +32,8 @@ function App() {
     <div>
       <AuthProvider>
         <BrowserRouter>
-          <Header />
-          <div className='container'>
+          <div className='container_main'>
+            <Header />
             < Routes >
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<ServiceList />} />
@@ -57,8 +57,8 @@ function App() {
               } />
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <Footer />
           </div>
-          <Footer />
         </BrowserRouter>
       </AuthProvider>
     </div >

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react';
 import ServiceItem from '../serviceItem/ServiceItem';
 import serviceDB from "../../../../db/servicesDb.json";
 
 const ServiceList = () => {
     return (
         <div>
-            <div className="d-flex flex-wrap justify-content-between">
+            <div className="d-flex flex-wrap justify-content-between p-4">
                 {serviceDB.map((servicio) => (
                     <ServiceItem
                         key={servicio.id}
@@ -14,7 +14,7 @@ const ServiceList = () => {
                         descripcion={servicio.descripcion}
                         precioLista={servicio.precioLista}
                         precioEfectivo={servicio.precioEfectivo}
-                        combo={servicio.Combo}
+                        combo={servicio.Combo} 
                     />
                 ))}
             </div>
@@ -22,4 +22,4 @@ const ServiceList = () => {
     );
 }
 
-export default ServiceList
+export default ServiceList;
