@@ -1,0 +1,22 @@
+.form-container {
+    background-color: #e9d2b8;
+    border-radius: 10px;
+  }
+  
+  .form-title {
+    color: #6c757d;
+  }
+  
+  .form-label {
+    color: #6c757d;
+  }
+  
+  .form-input {
+    border-color: #6c757d;
+  }
+  
+  .form-button {
+    background-color: #6c757d;
+    border-color: #6c757d;
+  }
+  

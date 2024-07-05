@@ -1,0 +1,21 @@
+.not-found-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found-title {
+    color: #5a4635;
+}
+
+.not-found-image {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.not-found-button {
+    margin-top: 1rem;
+}

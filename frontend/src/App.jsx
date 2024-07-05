@@ -7,16 +7,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 //Layout
-import Header from './components/pages/Layout/Header.jsx';
-import Footer from './components/pages/Layout/Footer.jsx';
+import Header from './components/Layout/Header.jsx';
+import Footer from './components/Layout/Footer.jsx';
 
 //Paginas
-import Home from './components/pages/Home.jsx';
+import Home from './components/pages/Home/Home.jsx';
 import ServiceList from './components/pages/service/serviceList/ServiceList.jsx';
-import About from './components/pages/About.jsx';
-import Contact from './components/pages/Contact.jsx';
-import NotFound from './components/pages/NotFound.jsx';
-import Login from './components/pages/Login.jsx';
+import About from './components/pages/About/About.jsx';
+import Contact from './components/pages/Contact/Contact.jsx';
+import NotFound from './components/pages/NotFound/NotFound.jsx';
+import Login from './components/pages/Login/Login.jsx';
 
 //Dashboards de usuarios
 import DashboardPatient from './components/pages/Dashboard/DashboardPatient/DashboardPatient.jsx';

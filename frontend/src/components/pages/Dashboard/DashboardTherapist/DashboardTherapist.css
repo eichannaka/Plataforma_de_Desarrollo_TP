@@ -1,0 +1,17 @@
+.container-dashboard {
+    background-color: #e9d2b8;
+    border-radius: 10px;
+  }
+  
+  .dashboard-title {
+    color: #6c757d;
+  }
+  
+  .dashboard-card {
+    border-color: #6c757d;
+  }
+  
+  .card-text-label {
+    font-weight: bold;
+  }
+  
