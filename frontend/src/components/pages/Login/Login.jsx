@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import db from '../../../db/db.json';
+import axios from 'axios';
 import './Login.css';
 
 const Login = () => {
@@ -11,22 +11,26 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handlerLogin = () => {
-    const user = db.find(user => user.email === email && user.password === password);
-
-    if (user) {
-      if (user.userType === "Administrador") {
-        login(user);
-        navigate("/dashboardAdmin");
-      } else if (user.userType === "Paciente") {
-        login(user);
-        navigate("/dashboardPatient");
-      } else if (user.userType === "Masajista") {
-        login(user);
-        navigate("/dashboardTherapist");
+  const handlerLogin = async () => {
+    try {
+      const request = await axios.post("http://localhost:8888/login", {
+        email,
+        password
+      });
+      if (request.data.success) {
+        login(request.data.accessToken, request.data.userData.id, request.data.userData.userType, request.data.userData.firstName);
+        if (request.data.userData.userType === "Administrador") {
+          navigate("/dashboardAdmin");
+        } else if (request.data.userData.userType === "Paciente") {
+          navigate("/dashboardPatient");
+        } else if (request.data.userData.userType === "Masajista") {
+          navigate("/dashboardTherapist");
+        }
+      } else {
+        setError("El email y/o la contraseña son incorrectos");
       }
-    } else {
-      setError("El email y/o la contraseña son incorrectos");
+    } catch (error) {
+      console.error("Ha surgido un error, por favor intente más tarde");
     }
   };
 

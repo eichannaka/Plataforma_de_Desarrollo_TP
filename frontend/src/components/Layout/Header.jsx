@@ -4,27 +4,24 @@ import { useAuth } from '../../contexts/AuthContext';
 import './Header.css';
 
 const Header = () => {
-    const { logueado, user, logout } = useAuth();
+    const { logueado, logout, userType, firstName } = useAuth();
     const navigate = useNavigate();
-    
-    // Agregar logs para verificar los valores
-    console.log("Header Component - logueado:", logueado);
-    console.log("Header Component - user:", user);
-    
+
     const handlerLogout = () => {
         logout();
         navigate("/login");
     };
 
     const handlerNavDashboard = () => {
-        if (user && user.userType === "Administrador") {
+        if (userType === "Administrador") {
             navigate("/dashboardAdmin");
-        } else if (user && user.userType === "Paciente") {
+        } else if (userType === "Paciente") {
             navigate("/dashboardPatient");
-        } else if (user && user.userType === "Masajista") {
+        } else if (userType === "Masajista") {
             navigate("/dashboardTherapist");
         }
     };
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -53,7 +50,9 @@ const Header = () => {
                                 <a href="#" className="nav-link" onClick={handlerNavDashboard}>Panel</a>
                             </li>
                             <li className="nav-item">
-                                <span className="nav-link">{user.firstName} ({user.userType}) </span>
+                                <span className="nav-link">
+                                    {firstName}({userType})
+                                </span>
                             </li>
                             <li className="nav-item">
                                 <a href="#" className="nav-link" onClick={handlerLogout}>Salir</a>
@@ -71,4 +70,3 @@ const Header = () => {
 };
 
 export default Header;
-``
