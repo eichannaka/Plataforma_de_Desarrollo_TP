@@ -1,5 +1,6 @@
 const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 exports.register = async (req, res) => {
     const { userType, firstName, lastName, email, password } = req.body;
@@ -85,6 +86,38 @@ exports.allUsers = async (req, res) => {
     }
 };
 
+// Modificar Usuario
+exports.updateUser = async (req, res) => {
+    try {
+        const { id } = req.params; 
+        const { userType, firstName, lastName, email, password } = req.body; 
+
+        if (!userType || !firstName || !lastName || !email) {
+            return res.status(400).json({ success: false, message: 'Todos los campos obligatorios deben ser proporcionados' });
+        }
+
+        const userUpdate = { userType, firstName, lastName, email };
+
+
+        if (password) {
+            userUpdate.password = await bcrypt.hash(password, 10);
+        }
+
+        const resultado = await userModel.update(id, userUpdate);
+
+        if (resultado.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
+        }
+
+        return res.json({ success: true, message: 'Usuario actualizado correctamente', data: resultado });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Error al actualizar el usuario' });
+    }
+};
+
+
+
 //Borrar usuario
 exports.deleteUser = async (req, res) => {
     const { id } = req.params;
@@ -97,7 +130,7 @@ exports.deleteUser = async (req, res) => {
     }
 };
 
-//Ruta protegida
-exports.welcome = (req, res) => {
-    res.json({ success: true, message: 'Bienvenida/o ' + req.user.firstName });
-}
+// //Ruta protegida
+// exports.welcome = (req, res) => {
+//     res.json({ success: true, message: 'Bienvenida/o ' + req.user.firstName });
+// }

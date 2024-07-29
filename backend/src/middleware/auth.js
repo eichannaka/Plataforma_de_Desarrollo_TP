@@ -5,14 +5,13 @@ exports.requireAuth = (req, res, next) => {
     if (!authHeader) {
         return res.status(401).json({ success: false, message: 'Token de autenticación no proporcionado' });
     }
-    // El valor del encabezado de autorización debe tener el formato "Bearer tu_token_jwt_aqui"
     const [bearer, token] = authHeader.split(' ');
     if (bearer !== 'Bearer' || !token) {
         return res.status(401).json({ success: false, message: 'Formato de token no válido' });
     }
     try{
         const decodedToken = jwt.verify(token, process.env.JWT_ACCESS_TOKEN_SECRET);
-        req.user = decodedToken; // Agregar información del usuario a la solicitud
+        req.user = decodedToken; 
         next();
     }catch(error){
         return res.status(401).json({ success: false, message: 'Token de autenticación inválido' });

@@ -7,7 +7,7 @@ const userController = require("../controllers/userController");
 
 router.post("/register", userController.register);
 router.post("/login", userController.login);
-router.get("/welcome", requireAuth, userController.welcome);
+// router.get("/welcome", requireAuth, userController.welcome);
 
 //Masajista
 router.get("/dashboardTherapist/user/:id", requireAuth, userController.findByID);
@@ -17,6 +17,7 @@ router.get("/dashboardPatient/user/:id", requireAuth, userController.findByID);
 
 //Administrador
 router.get("/dashboardAdmin/users", requireAuth, userController.allUsers);
+router.put("/dashboardAdmin/users/:id",requireAuth, userController.updateUser);
 router.delete("/dashboardAdmin/users/:id", requireAuth, userController.deleteUser);
 // router.get('/refresh-token', userController.refreshToken);
 

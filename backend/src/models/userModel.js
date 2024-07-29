@@ -30,7 +30,6 @@ exports.create = async ({ userType, firstName, lastName, email, password }) => {
 }
 
 exports.login = async ({ email, password }) => {
-    //Buscamos el usuario por su correo.b
     const query = `
         SELECT id, userType, firstName, lastName, email, password
         FROM users
@@ -38,7 +37,6 @@ exports.login = async ({ email, password }) => {
     `;
     try {
         [results] = await connection.query(query, [email]);
-        //Verificamos si encontró el usuario.
         if (results.length == 1) {
             const usuario = results[0];
             const is_contrasena = await bcrypt.compare(password, usuario.password);
@@ -78,20 +76,27 @@ exports.delete = async (id) => {
     }
 };
 
-// exports.update = async ({ ID, userType, firstName, lastName, email, password }) => {
-//     const query = `
-//         UPDATE users
-//         SET
-//         userType = ?,
-//         firstName = ?,
-//         lastName = ?,
-//         email = ?,
-//         password = ?
-//         WHERE id = ?
-//     `;
-//     try {
-//         await connection.query(query, [userType, firstName, lastName, email, password, ID]);
-//     } catch (error) {
-//         throw error;
-//     }
-// }
+exports.update = async (id, { userType, firstName, lastName, email, password }) => {
+    let query = `
+        UPDATE users
+        SET userType = ?,
+            firstName = ?,
+            lastName = ?,
+            email = ?
+    `;
+    const values = [userType, firstName, lastName, email];
+    if (password) {
+        query += ', password = ?';
+        values.push(password);
+    }
+    
+    query += ' WHERE id = ?';
+    values.push(id);
+
+    try {
+        const [results] = await connection.query(query, values);
+        return results;
+    } catch (error) {
+        throw error;
+    }
+};

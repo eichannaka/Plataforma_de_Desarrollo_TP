@@ -6,19 +6,19 @@ import './DashboardTherapist.css';
 const DashboardTherapist = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const { token, id } = useAuth(); 
+  const { token, id } = useAuth();
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`http://localhost:8888/dashboardTherapist/user/${id}`, {
           headers: {
-            'Authorization':  `Bearer ${token}`
+            'Authorization': `Bearer ${token}`
           }
         });
-        console.log('API response:', response); 
+        console.log('API response:', response);
         setUser(response.data.data);
-      } catch (error) { 
+      } catch (error) {
         console.error("Error fetching user data: ", error);
         setError(error);
       }
