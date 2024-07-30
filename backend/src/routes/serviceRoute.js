@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const serviceController = require("../controllers/serviceController");
+const { requireAuth } = require("../middleware/auth");
+
 
 //Ruta para obtener todos los servicios
 router.get("/services", serviceController.indexServices);
@@ -31,5 +33,17 @@ router.delete("/scheduleDelete/:id", serviceController.delete);
 
 //Obtener todos los datos de los turnos
 router.get("/scheduleData", serviceController.indexSchedule);
+
+
+
+
+////////////////////////////
+// Ruta para obtener todos los terapeutas
+router.get("/therapistsForPatient", serviceController.allTherapistsForPatient);
+// Ruta para obtener todos los servicios
+router.get("/servicesForPatient", serviceController.servicesForPatient);
+// Ruta para crear un nuevo turno
+router.post("/scheduleForPatient", serviceController.storeForPatient);
+
 
 module.exports = router;

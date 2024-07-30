@@ -22,10 +22,8 @@ const Header = () => {
         }
     };
 
-
-
     return (
-        <nav className="navbar navbar-expand-lg navbar-light">
+        <nav className="navbar navbar-expand-lg navbar-light custom-navbar">
             <Link className="navbar-brand" to="/">
                 <img src="../../public/img/Logo-Kimochii.png" alt="Logo" style={{ height: '30px' }} />
             </Link>
@@ -51,10 +49,18 @@ const Header = () => {
                     {logueado ? (
                         <>
                             <li className="nav-item">
-                                <a href="#" className="nav-link" onClick={handlerNavDashboard}><span>Panel: {firstName} ({userType})</span></a>
+                                <a href="#" className="nav-link" onClick={handlerNavDashboard}>
+                                    Panel: {firstName} ({userType})
+                                </a>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/schedule">Turnos</Link>
+                                <Link className="nav-link" to={
+                                    userType === "Administrador" ? "/schedule" :
+                                    userType === "Masajista" ? "/scheduleTherapist" :
+                                    "/schedulePatient"
+                                }>
+                                    {userType === "Administrador" ? "Lista Turnos" : userType === "Masajista" ? "Turnos" : "Mis Turnos"}
+                                </Link>
                             </li>
                             <li className="nav-item">
                                 <a href="#" className="nav-link" onClick={handlerLogout}>Salir</a>

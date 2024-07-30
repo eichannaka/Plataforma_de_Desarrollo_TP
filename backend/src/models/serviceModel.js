@@ -134,3 +134,47 @@ exports.allTurnosWithDetails = async () => {
         throw error;
     }
 };
+
+
+/////////////////////////////
+// Obtener todos los terapeutas
+exports.allTherapistsForPatient = async () => {
+    const query = `
+        SELECT id, firstName, lastName
+        FROM users
+        WHERE userType = 'Masajista'
+    `;
+    try {
+        const [results] = await connection.query(query);
+        return results;
+    } catch (error) {
+        throw error;
+    }
+}
+
+// Obtener todos los servicios
+exports.allServicesForPatient = async () => {
+    const query = `
+        SELECT id, terapia
+        FROM services
+    `;
+    try {
+        const [results] = await connection.query(query);
+        return results;
+    } catch (error) {
+        throw error;
+    }
+}
+
+// Crear un nuevo turno
+exports.createForPatient = async ({ usuario_id, terapeuta_id, service_id, fecha, hora }) => {
+    const query = `
+        INSERT INTO turnos (usuario_id, terapeuta_id, service_id, fecha, hora, estado)
+        VALUES (?, ?, ?, ?, ?, 'pendiente')
+    `;
+    try {
+        await connection.query(query, [usuario_id, terapeuta_id, service_id, fecha, hora]);
+    } catch (error) {
+        throw error;
+    }
+}

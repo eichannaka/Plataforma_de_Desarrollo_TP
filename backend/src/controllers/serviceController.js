@@ -103,3 +103,42 @@ exports.indexSchedule = async (req, res) => {
         res.status(500).json({ success: false, message: 'Error al intentar recuperar los turnos' });
     }
 };
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+///Solicitud de turnos
+
+// Obtener todos los terapeutas
+exports.allTherapistsForPatient = async (req, res) => {
+    try {
+        const results = await serviceModel.allTherapistsForPatient();
+        res.json({ success: true, results });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: 'Error al intentar recuperar los terapeutas' });
+    }
+}
+
+// Obtener todos los servicios
+exports.servicesForPatient = async (req, res) => {
+    try {
+        const results = await serviceModel.allServicesForPatient();
+        res.json({ success: true, results });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: 'Error al intentar recuperar los servicios' });
+    }
+}
+
+// Crear un nuevo turno
+exports.storeForPatient = async (req, res) => {
+    const { usuario_id, terapeuta_id, service_id, fecha, hora } = req.body;
+    try {
+        await serviceModel.createForPatient({ usuario_id, terapeuta_id, service_id, fecha, hora });
+        res.json({ success: true, message: 'El turno se ha creado correctamente' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: 'Error al intentar agregar el turno' });
+    }
+}
+
