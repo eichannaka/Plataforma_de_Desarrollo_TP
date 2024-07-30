@@ -8,7 +8,6 @@ const DashboardPatient = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const { token, id } = useAuth(); 
-
   useEffect(() => {
     const fetchUserData = async () => {
       try {

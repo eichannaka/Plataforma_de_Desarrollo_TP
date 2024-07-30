@@ -1,0 +1,29 @@
+.schedule-item {
+    background-color: #f7f7f7; 
+}
+
+.schedule-item:nth-child(even) {
+    background-color: #e9d2b8; 
+}
+
+.actions .btn {
+    margin-right: 5px;
+}
+
+.btn-confirm {
+    background-color: #4caf50; 
+    color: white;
+}
+
+.btn-confirm:hover {
+    background-color: #45a049; 
+}
+
+.btn-delete {
+    background-color: #f44336; 
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #da190b; 
+}

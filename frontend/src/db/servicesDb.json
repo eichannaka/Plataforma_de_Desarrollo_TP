@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "Combo": false,
+        "Combo": 0,
         "terapia": "Shiatsu",
         "tiempo": "60 minutos",
         "descripcion": "Shiatsu es una forma de trabajo corporal basada en técnicas de masaje japonesas que utiliza presión con los dedos.",
@@ -10,7 +10,7 @@
     },
     {
         "id": 2,
-        "Combo": false,
+        "Combo": 0,
         "terapia": "Digitopuntura",
         "tiempo": "45 minutos",
         "descripcion": "Digitopuntura utiliza la presión en puntos específicos del cuerpo para aliviar el dolor y mejorar la salud.",
@@ -19,7 +19,7 @@
     },
     {
         "id": 3,
-        "Combo": false,
+        "Combo": 0,
         "terapia": "Reflexiología",
         "tiempo": "30 minutos",
         "descripcion": "Reflexiología es una terapia que aplica presión en puntos de los pies, manos y orejas para promover la curación en otras partes del cuerpo.",
@@ -28,7 +28,7 @@
     },
     {
         "id": 4,
-        "Combo": false,
+        "Combo": 0,
         "terapia": "Cupping",
         "tiempo": "30 minutos",
         "descripcion": "Cupping es una terapia que utiliza ventosas para mejorar la circulación y aliviar el dolor muscular.",
@@ -37,7 +37,7 @@
     },
     {
         "id": 5,
-        "Combo": false,
+        "Combo": 0,
         "terapia": "Moxibustión",
         "tiempo": "30 minutos",
         "descripcion": "Moxibustión es una terapia tradicional china que consiste en quemar artemisa cerca de la piel para estimular la curación.",
@@ -46,7 +46,7 @@
     },
     {
         "id": 6,
-        "Combo": true,
+        "Combo": 1,
         "terapia": "Shiatsu + Reflexiología",
         "tiempo": "90 minutos",
         "descripcion": "Combinación de Shiatsu y Reflexiología para una experiencia de curación completa que alivia la tensión muscular y mejora la circulación.",
@@ -55,7 +55,7 @@
     },
     {
         "id": 7,
-        "Combo": true,
+        "Combo": 1,
         "terapia": "Shiatsu + Cupping",
         "tiempo": "90 minutos",
         "descripcion": "Combinación de Shiatsu y Cupping para una profunda relajación muscular y mejora de la circulación sanguínea.",
@@ -64,7 +64,7 @@
     },
     {
         "id": 8,
-        "Combo": true,
+        "Combo": 1,
         "terapia": "Shiatsu + Moxibustión",
         "tiempo": "90 minutos",
         "descripcion": "Combinación de Shiatsu y Moxibustión para un tratamiento holístico que alivia el estrés y promueve la curación.",
@@ -73,7 +73,7 @@
     },
     {
         "id": 9,
-        "Combo": true,
+        "Combo": 1,
         "terapia": "Digitopuntura + Reflexiología",
         "tiempo": "75 minutos",
         "descripcion": "Combinación de Digitopuntura y Reflexiología para un alivio integral del dolor y mejora de la salud general.",

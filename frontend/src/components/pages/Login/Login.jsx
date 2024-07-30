@@ -18,7 +18,8 @@ const Login = () => {
         password
       });
       if (request.data.success) {
-        login(request.data.accessToken, request.data.userData.id, request.data.userData.userType, request.data.userData.firstName);
+        login(request.data, request.data.userData);
+        console.log(request.data); 
         if (request.data.userData.userType === "Administrador") {
           navigate("/dashboardAdmin");
         } else if (request.data.userData.userType === "Paciente") {

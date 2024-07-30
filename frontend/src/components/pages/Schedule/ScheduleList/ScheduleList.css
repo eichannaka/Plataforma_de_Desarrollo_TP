@@ -1,0 +1,20 @@
+.schedule-table {
+    background-color: #ffffff; 
+}
+
+.thead-light {
+    background-color: #e9d2b8; 
+    color: #333333;
+}
+
+.table-bordered {
+    border-color: #e9d2b8; 
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f7f7f7; 
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #e9d2b8; 
+}

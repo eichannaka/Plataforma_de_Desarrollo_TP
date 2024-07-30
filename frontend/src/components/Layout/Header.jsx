@@ -23,11 +23,15 @@ const Header = () => {
     };
 
 
+
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light">
             <Link className="navbar-brand" to="/">
                 <img src="../../public/img/Logo-Kimochii.png" alt="Logo" style={{ height: '30px' }} />
             </Link>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
@@ -47,12 +51,10 @@ const Header = () => {
                     {logueado ? (
                         <>
                             <li className="nav-item">
-                                <a href="#" className="nav-link" onClick={handlerNavDashboard}>Panel</a>
+                                <a href="#" className="nav-link" onClick={handlerNavDashboard}><span>Panel: {firstName} ({userType})</span></a>
                             </li>
                             <li className="nav-item">
-                                <span className="nav-link">
-                                    {firstName}({userType})
-                                </span>
+                                <Link className="nav-link" to="/schedule">Turnos</Link>
                             </li>
                             <li className="nav-item">
                                 <a href="#" className="nav-link" onClick={handlerLogout}>Salir</a>

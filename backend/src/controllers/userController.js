@@ -31,26 +31,26 @@ exports.login = async (req, res) => {
             const accessToken = jwt.sign(
                 playload,
                 process.env.JWT_ACCESS_TOKEN_SECRET,
-                { expiresIn: '60m' }
+                { expiresIn: '15m' }
             );
 
-            // const refreshToken = jwt.sign(
-            //     playload, 
-            //     process.env.JWT_REFRESH_TOKEN_SECRET, 
-            //     { expiresIn: '7d' }
-            // );
+            const refreshToken = jwt.sign(
+                playload, 
+                process.env.JWT_REFRESH_TOKEN_SECRET, 
+                { expiresIn: '7d' }
+            );
 
             res.json({
                 success: true,
                 message: 'Inicio de sesión exitoso',
                 accessToken,
+                refreshToken,
                 userData: {
                     id: usuario.id,
                     userType: usuario.userType.trim(),
                     firstName: usuario.firstName,
                     lastName: usuario.lastName,
                 }
-                // refreshToken
             });
         }
     } catch (error) {
@@ -58,6 +58,31 @@ exports.login = async (req, res) => {
         res.status(500).json({ success: false, message: 'Error al intentar iniciar sesión' });
     }
 }
+
+//Refresh token
+exports.refreshToken = (req, res) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(401).json({ success: false, message: 'Token de autenticación no proporcionado' });
+    }
+    // El valor del encabezado de autorización debe tener el formato "Bearer tu_token_jwt_aqui"
+    const [bearer, token] = authHeader.split(' ');
+    if (bearer !== 'Bearer' || !token) {
+        return res.status(401).json({ success: false, message: 'Formato de token no válido' });
+    }
+    try{
+        const usuario = jwt.verify(token, process.env.JWT_REFRESH_TOKEN_SECRET);
+        //Información que se va a hashear.
+        const playload = { ID: usuario.ID, userType: usuario.userType.trim(), firstName: usuario.firstName, lastName: usuario.lastName};
+        // Ahora, user contiene información del usuario. Puedes generar un nuevo accessToken.
+        const newAccessToken = jwt.sign(playload, process.env.JWT_ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+        // Devolver el nuevo accessToken al cliente
+        res.json({ success: true, accessToken: newAccessToken });
+    }catch(error){
+        return res.status(401).json({ success: false, message: 'Token de autenticación inválido' });
+    }
+}
+
 
 // Usuario por ID
 exports.findByID = async (req, res) => {

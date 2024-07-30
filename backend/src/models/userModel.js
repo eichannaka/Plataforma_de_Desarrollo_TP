@@ -50,14 +50,14 @@ exports.login = async ({ email, password }) => {
 }
 
 
-exports.find = async (ID) => {
+exports.find = async (id) => {
     const query = `
         SELECT id, userType, firstName, lastName, email, password
         FROM users
         WHERE id = ?
     `;
     try {
-        const [results] = await connection.query(query, [ID]);
+        const [results] = await connection.query(query, [id]);
         return (results.length == 1) ? results[0] : null;
     } catch (error) {
         throw error;

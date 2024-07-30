@@ -17,6 +17,7 @@ import About from './components/pages/About/About.jsx';
 import Contact from './components/pages/Contact/Contact.jsx';
 import NotFound from './components/pages/NotFound/NotFound.jsx';
 import Login from './components/pages/Login/Login.jsx';
+import Schedule from './components/pages/Schedule/Schedule/Schedule.jsx';
 
 //Dashboards de usuarios
 import DashboardPatient from './components/pages/Dashboard/DashboardPatient/DashboardPatient.jsx';
@@ -40,6 +41,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/schedule" element={<Schedule />} />
               <Route path="/dashboardAdmin" element={
                 <ProtectedRouter>
                   <DashboardAdmin />
