@@ -1,22 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './SchedulePatient.css'; // Import the CSS file
+import { useAuth } from '../../../contexts/AuthContext';
+import './SchedulePatient.css';
 
 const SchedulePatient = () => {
+    const { id } = useAuth();
     const [error, setError] = useState(null);
     const [therapists, setTherapists] = useState([]);
     const [services, setServices] = useState([]);
     const [formData, setFormData] = useState({
-        usuario_id: '',
+        usuario_id: id,
         terapeuta_id: '',
         service_id: '',
         fecha: '',
         hora: ''
     });
+    console.log(formData);
 
     useEffect(() => {
         const fetchTherapists = async () => {
             try {
+                // const response = await axios.get('http://localhost:8888/therapistsForPatient', {
+                //     headers: {
+                //         'Authorization': `Bearer ${token}`
+                //     }
+                // });
                 const response = await axios.get('http://localhost:8888/therapistsForPatient');
                 setTherapists(response.data.results);
             } catch (error) {
@@ -27,6 +35,11 @@ const SchedulePatient = () => {
 
         const fetchServices = async () => {
             try {
+                // const response = await axios.get('http://localhost:8888/servicesForPatient', {
+                //     headers: {
+                //         'Authorization': `Bearer ${token}`
+                //     }
+                // });
                 const response = await axios.get('http://localhost:8888/servicesForPatient');
                 setServices(response.data.results);
             } catch (error) {
@@ -44,13 +57,20 @@ const SchedulePatient = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post('/scheduleForPatient', formData)
-            .then(response => alert(response.data.message))
-            .catch(error => console.error(error));
-    };
+    const handleSubmit = async () => {
+        try {
 
+            await axios.post('http://localhost:8888/scheduleForPatient', formData);
+            // const response = await axios.get('http://localhost:8888/servicesForPatient', {
+            //     headers: {
+            //         'Authorization': `Bearer ${token}`
+            //     }
+            // });
+        } catch (error) {
+            console.error("Error fetching service data: ", error);
+            setError(error);
+        }
+    };
     return (
         <div className="container d-flex flex-column align-items-center justify-content-center min-vh-100">
             <h1 className="text-center mb-4">Solicitud de turnos</h1>
@@ -98,7 +118,7 @@ const SchedulePatient = () => {
                             className="form-control"
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary">Solicitar Turno</button>
+                    <button type="submit" className="btn btn-primary">Crear Turno</button>
                 </form>
             </div>
         </div>

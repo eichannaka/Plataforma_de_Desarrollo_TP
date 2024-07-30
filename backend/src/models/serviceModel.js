@@ -166,15 +166,27 @@ exports.allServicesForPatient = async () => {
     }
 }
 
-// Crear un nuevo turno
-exports.createForPatient = async ({ usuario_id, terapeuta_id, service_id, fecha, hora }) => {
+// Obtener todos los turnos de un terapeuta específico
+exports.allSchedulesByTherapist = async (id) => {
     const query = `
-        INSERT INTO turnos (usuario_id, terapeuta_id, service_id, fecha, hora, estado)
-        VALUES (?, ?, ?, ?, ?, 'pendiente')
+    SELECT 
+        t.id AS turno_id,
+        t.fecha,
+        t.hora,
+        t.estado,
+        u1.firstName AS paciente_firstName,
+        u1.lastName AS paciente_lastName,
+        s.terapia
+    FROM turnos t
+    JOIN users u1 ON t.usuario_id = u1.id
+    JOIN services s ON t.service_id = s.id
+    WHERE t.terapeuta_id = ?
+    ORDER BY t.fecha, t.hora;
     `;
     try {
-        await connection.query(query, [usuario_id, terapeuta_id, service_id, fecha, hora]);
+        const [results] = await connection.query(query, [id]);
+        return results;
     } catch (error) {
         throw error;
     }
-}
+};

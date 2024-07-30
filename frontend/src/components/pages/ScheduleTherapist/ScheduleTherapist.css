@@ -1,0 +1,27 @@
+.container {
+    background-color: #e9d2b8;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.schedule-table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.schedule-table th, .schedule-table td {
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-confirm {
+    background-color: #4CAF50; 
+}
+
+.btn-delete {
+    background-color: #f44336; 
+}

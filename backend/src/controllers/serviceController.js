@@ -142,3 +142,14 @@ exports.storeForPatient = async (req, res) => {
     }
 }
 
+// Obtener todos los turnos de un terapeuta específico
+exports.getSchedulesByTherapist = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const results = await serviceModel.allSchedulesByTherapist(id);
+        res.json({ success: true, results });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: 'Error al intentar recuperar los turnos del terapeuta' });
+    }
+};

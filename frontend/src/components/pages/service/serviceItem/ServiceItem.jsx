@@ -1,9 +1,26 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; 
+import { useAuth } from '../../../../contexts/AuthContext'; 
 import './ServiceItem.css';
 
 const ServiceItem = ({ terapia, tiempo, descripcion, precioLista, precioEfectivo, combo }) => {
+    const navigate = useNavigate(); 
+    const { logueado, userType } = useAuth(); 
+
     const cardStyle = {
         backgroundColor: combo ? '#d1ecf1' : '#f7c286',
+    };
+
+    const handleReserveClick = () => {
+        if (logueado) {
+            if (userType === 'Paciente') {
+                navigate('/schedulePatient'); 
+            } else {
+                console.error("No tenes permisos");
+            }
+        } else {
+            navigate('/login'); 
+        }
     };
 
     return (
@@ -16,10 +33,12 @@ const ServiceItem = ({ terapia, tiempo, descripcion, precioLista, precioEfectivo
                     <span className="text me-2 custom-text">Precio en lista: ${precioLista}</span> <br />
                     <span className="fw-bold custom-text">Precio en efectivo: ${precioEfectivo}</span>
                 </div>
-                <a href="#" className="btn btn-dark mt-3 custom-btn">Reservar</a>
+                <button className="btn btn-dark mt-3 custom-btn" onClick={handleReserveClick}>
+                    Reservar
+                </button>
             </div>
         </div>
     );
-}
+};
 
 export default ServiceItem;
