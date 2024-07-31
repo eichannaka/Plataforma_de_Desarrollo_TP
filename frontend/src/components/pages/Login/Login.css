@@ -1,22 +1,30 @@
 .form-container {
-    background-color: #e9d2b8;
-    border-radius: 10px;
-  }
-  
-  .form-title {
-    color: #6c757d;
-  }
-  
-  .form-label {
-    color: #6c757d;
-  }
-  
-  .form-input {
-    border-color: #6c757d;
-  }
-  
-  .form-button {
-    background-color: #6c757d;
-    border-color: #6c757d;
-  }
-  
+  background-color: #e9d2b8;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px; 
+}
+
+.form-title {
+  color: #6c757d;
+}
+
+.form-label {
+  color: #6c757d;
+}
+
+.form-input {
+  border-color: #6c757d;
+}
+
+.form-button {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white; /* Añadido para que el texto del botón sea visible */
+}
+
+.btn-secondary {
+  background-color: #f8f9fa;
+  border-color: #6c757d;
+  color: #6c757d;
+}

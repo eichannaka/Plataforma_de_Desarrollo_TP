@@ -4,28 +4,27 @@ import { useAuth } from '../../../contexts/AuthContext';
 import './SchedulePatient.css';
 
 const SchedulePatient = () => {
-    const { id } = useAuth();
+    const { id, token } = useAuth();
     const [error, setError] = useState(null);
+    const [successMessage, setSuccessMessage] = useState('');
     const [therapists, setTherapists] = useState([]);
     const [services, setServices] = useState([]);
     const [formData, setFormData] = useState({
-        usuario_id: id,
+        usuario_id: id || '',
         terapeuta_id: '',
         service_id: '',
         fecha: '',
         hora: ''
     });
-    console.log(formData);
 
     useEffect(() => {
         const fetchTherapists = async () => {
             try {
-                // const response = await axios.get('http://localhost:8888/therapistsForPatient', {
-                //     headers: {
-                //         'Authorization': `Bearer ${token}`
-                //     }
-                // });
-                const response = await axios.get('http://localhost:8888/therapistsForPatient');
+                const response = await axios.get('http://localhost:8888/therapistsForPatient', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
                 setTherapists(response.data.results);
             } catch (error) {
                 console.error("Error fetching therapist data: ", error);
@@ -35,12 +34,11 @@ const SchedulePatient = () => {
 
         const fetchServices = async () => {
             try {
-                // const response = await axios.get('http://localhost:8888/servicesForPatient', {
-                //     headers: {
-                //         'Authorization': `Bearer ${token}`
-                //     }
-                // });
-                const response = await axios.get('http://localhost:8888/servicesForPatient');
+                const response = await axios.get('http://localhost:8888/servicesForPatient', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
                 setServices(response.data.results);
             } catch (error) {
                 console.error("Error fetching service data: ", error);
@@ -57,20 +55,26 @@ const SchedulePatient = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
-
-            await axios.post('http://localhost:8888/scheduleForPatient', formData);
-            // const response = await axios.get('http://localhost:8888/servicesForPatient', {
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`
-            //     }
-            // });
+            await axios.post('http://localhost:8888/scheduleForPatient',
+                formData,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+            setSuccessMessage("El turno ha sido creado exitosamente.");
+            setError(null);
         } catch (error) {
-            console.error("Error fetching service data: ", error);
-            setError(error);
+            console.error("Error creating schedule: ", error);
+            setError("Ocurrió un error al crear el turno. Intente nuevamente.");
+            setSuccessMessage('');
         }
     };
+
+
     return (
         <div className="container d-flex flex-column align-items-center justify-content-center min-vh-100">
             <h1 className="text-center mb-4">Solicitud de turnos</h1>
@@ -120,6 +124,8 @@ const SchedulePatient = () => {
                     </div>
                     <button type="submit" className="btn btn-primary">Crear Turno</button>
                 </form>
+                {error && <div className="alert alert-danger mt-3">{error}</div>}
+                {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
             </div>
         </div>
     );

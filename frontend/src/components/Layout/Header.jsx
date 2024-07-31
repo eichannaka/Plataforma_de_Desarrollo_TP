@@ -45,13 +45,13 @@ const Header = () => {
                         <Link className="nav-link" to="/contact">Contacto</Link>
                     </li>
                 </ul>
-                <ul className="navbar-nav">
+                <ul className="navbar-nav ml-auto">
                     {logueado ? (
                         <>
                             <li className="nav-item">
-                                <a href="#" className="nav-link" onClick={handlerNavDashboard}>
+                                <span className="nav-link" onClick={handlerNavDashboard} style={{ cursor: 'pointer' }}>
                                     Panel: {firstName} ({userType})
-                                </a>
+                                </span>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to={
@@ -63,7 +63,7 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="#" className="nav-link" onClick={handlerLogout}>Salir</a>
+                                <span className="nav-link" onClick={handlerLogout} style={{ cursor: 'pointer' }}>Salir</span>
                             </li>
                         </>
                     ) : (

@@ -20,6 +20,8 @@ import Login from './components/pages/Login/Login.jsx';
 import Schedule from './components/pages/Schedule/Schedule/Schedule.jsx';
 import SchedulePatient from './components/pages/SchedulePatient/SchedulePatient.jsx';
 import ScheduleTherapist from './components/pages/ScheduleTherapist/ScheduleTherapist.jsx';
+import SignUp from './components/pages/SignUp/SignUp.jsx';
+
 
 //Dashboards de usuarios
 import DashboardPatient from './components/pages/Dashboard/DashboardPatient/DashboardPatient.jsx';
@@ -43,9 +45,26 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/schedule" element={<Schedule />} />
-              <Route path="/schedulePatient" element={<SchedulePatient />} />
-              <Route path="/scheduleTherapist" element={<ScheduleTherapist />} />
+              <Route path="/register" element={<SignUp />} />
+              
+              {/* Turnos */}
+              <Route path="/schedule" element={
+                <ProtectedRouter>
+                  <Schedule />
+                </ProtectedRouter>
+              } />
+              <Route path="/schedulePatient" element={
+                <ProtectedRouter>
+                  <SchedulePatient />
+                </ProtectedRouter>
+              } />
+              <Route path="/scheduleTherapist" element={
+                <ProtectedRouter>
+                  <ScheduleTherapist />
+                </ProtectedRouter>
+              } />
+
+              {/* Panel */}
               <Route path="/dashboardAdmin" element={
                 <ProtectedRouter>
                   <DashboardAdmin />

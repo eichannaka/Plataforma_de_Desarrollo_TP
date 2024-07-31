@@ -6,8 +6,8 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [logueado, setLogueado] = useState(false);
   const [id, setId] = useState(0);
-  const [userType, setUserType] = useState("")
-  const [firstName, setFirstName] = useState("")
+  const [userType, setUserType] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -15,44 +15,20 @@ export const AuthProvider = ({ children }) => {
     const storedId = localStorage.getItem("id");
     const storedUserType = localStorage.getItem("userType");
     const storedFirstName = localStorage.getItem("firstName");
-  
-    if (storedId && storedUserType && storedFirstName) {
+    const storedToken = localStorage.getItem("token");
+
+    if (storedId && storedUserType && storedFirstName && storedToken) {
       setId(storedId);
       setUserType(storedUserType);
       setFirstName(storedFirstName);
+      setToken(storedToken);
       setLogueado(true);
     }
-  
-    doRefreshToken();
-  }, []);
-  
-  const doRefreshToken = async () => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      try {
-        const request = await axios.get("http://localhost:8888/refresh-token", {
-          headers: {
-            Authorization: `Bearer ${storedToken}`
-          }
-        });
-  
-        if (request.data.success) {
-          setToken(request.data.accessToken);
-          localStorage.setItem("token", request.data.accessToken);
-        }
-      } catch (error) {
-        console.error("Ha surgido un error, por favor intente más tarde");
-        logout();
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      setLoading(false);
-    }
-  };
-  
 
-  const login = ({ accessToken, refreshToken }, {id, userType, firstName}) => {
+    setLoading(false); 
+  }, []);
+
+  const login = ({ accessToken, refreshToken }, { id, userType, firstName }) => {
     setToken(accessToken);
     localStorage.setItem("token", refreshToken);
     localStorage.setItem("id", id);
@@ -61,24 +37,19 @@ export const AuthProvider = ({ children }) => {
     setId(id);
     setUserType(userType);
     setFirstName(firstName);
-
     setLogueado(true);
   };
+
   const logout = () => {
     setLogueado(false);
     setToken(null);
     setId(0);
+    localStorage.clear();
   };
 
   return (
     <AuthContext.Provider value={{ logueado, login, logout, token, id, userType, firstName }}>
-      {
-        (loading)
-          ?
-          <div> Cargando... </div>
-          :
-          children
-      }
+      {loading ? <div>Cargando...</div> : children}
     </AuthContext.Provider>
   );
 };

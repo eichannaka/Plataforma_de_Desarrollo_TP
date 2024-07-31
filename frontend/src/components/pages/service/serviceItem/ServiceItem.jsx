@@ -1,25 +1,21 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import { useAuth } from '../../../../contexts/AuthContext'; 
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../../contexts/AuthContext';
 import './ServiceItem.css';
 
 const ServiceItem = ({ terapia, tiempo, descripcion, precioLista, precioEfectivo, combo }) => {
-    const navigate = useNavigate(); 
-    const { logueado, userType } = useAuth(); 
+    const navigate = useNavigate();
+    const { logueado, userType } = useAuth();
 
     const cardStyle = {
         backgroundColor: combo ? '#d1ecf1' : '#f7c286',
     };
 
     const handleReserveClick = () => {
-        if (logueado) {
-            if (userType === 'Paciente') {
-                navigate('/schedulePatient'); 
-            } else {
-                console.error("No tenes permisos");
-            }
-        } else {
-            navigate('/login'); 
+        if (userType === 'Paciente') {
+            navigate('/schedulePatient');
+        } else if (logueado == false) {
+            navigate('/login');
         }
     };
 

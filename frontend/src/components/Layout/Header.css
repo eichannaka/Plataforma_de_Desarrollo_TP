@@ -13,10 +13,11 @@
 
 .navbar-nav {
     flex-direction: row;
+    align-items: center;
 }
 
 .navbar-nav .nav-item {
-    margin-right: 1rem; 
+    margin-right: 1rem;
 }
 
 .navbar-nav .nav-link {
@@ -29,19 +30,38 @@
 }
 
 .navbar-toggler-icon {
+    background-image: none;
+    display: inline-block;
+    width: 24px;
+    height: 2px;
     background-color: #4A4A4A;
+    position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: #4A4A4A;
+}
+
+.navbar-toggler-icon::before {
+    top: -6px;
+}
+
+.navbar-toggler-icon::after {
+    top: 6px;
 }
 
 .navbar-toggler {
-    border-color: #4A4A4A;
-}
-
-.navbar-toggler:hover {
-    background-color: #4A4A4A;
+    border-color: transparent;
 }
 
 @media (max-width: 992px) {
     .navbar-nav {
+        flex-direction: column;
         text-align: center;
         margin-top: 1rem;
     }

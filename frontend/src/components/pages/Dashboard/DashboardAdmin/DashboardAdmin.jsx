@@ -4,7 +4,8 @@ import { useAuth } from '../../../../contexts/AuthContext';
 import axios from 'axios';
 import './DashboardAdmin.css'; 
 
-export const DashboardAdmin = () => {
+export const  DashboardAdmin = () => {
+  const { token, firstName: loggedInFirstName } = useAuth();
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
@@ -13,7 +14,6 @@ export const DashboardAdmin = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { token, firstName: loggedInFirstName } = useAuth();
 
   useEffect(() => {
     const fetchUsers = async () => {

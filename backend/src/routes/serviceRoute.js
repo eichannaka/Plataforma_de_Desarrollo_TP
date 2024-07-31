@@ -6,37 +6,33 @@ const { requireAuth } = require("../middleware/auth");
 //Ruta para obtener todos los servicios
 router.get("/services", serviceController.indexServices);
 
+
+
+
 // Ruta para obtener todos los turnos
-router.get("/schedule", serviceController.indexSchedule);
-
+router.get("/schedule", requireAuth, serviceController.indexSchedule);
 // Ruta para crear un nuevo turno
-router.post("/schedule", serviceController.store);
-
+router.post("/schedule", requireAuth, serviceController.store);
 // Ruta para obtener un turno específico
-router.get("/schedule/:id", serviceController.show);
-
+router.get("/schedule/:id", requireAuth, serviceController.show);
 // Ruta para actualizar un turno
-router.put("/schedule/:id", serviceController.update);
-
+router.put("/schedule/:id", requireAuth, serviceController.update);
 // Confirmar turno
-router.patch("/scheduleConfirm/:id", serviceController.confirmSchedule);
-
+router.patch("/scheduleConfirm/:id", requireAuth, serviceController.confirmSchedule);
 // Eliminar turno
-router.delete("/scheduleDelete/:id", serviceController.delete);
-
+router.delete("/scheduleDelete/:id", requireAuth, serviceController.delete);
 //Obtener todos los datos de los turnos
-router.get("/scheduleData", serviceController.indexSchedule);
-
+router.get("/scheduleData", requireAuth, serviceController.indexSchedule);
 
 ////////////////////////////
 // Ruta para obtener todos los terapeutas
-router.get("/therapistsForPatient", serviceController.allTherapistsForPatient);
+router.get("/therapistsForPatient", requireAuth, serviceController.allTherapistsForPatient);
 // Ruta para obtener todos los servicios
-router.get("/servicesForPatient", serviceController.servicesForPatient);
+router.get("/servicesForPatient", requireAuth, serviceController.servicesForPatient);
 // Ruta para crear un nuevo turno
-router.post("/scheduleForPatient", serviceController.storeForPatient);
+router.post("/scheduleForPatient", requireAuth, serviceController.storeForPatient);
 
 // Ruta para obtener todos los turnos de un terapeuta específico
-router.get("/scheduleByTherapist/:id", serviceController.getSchedulesByTherapist);
+router.get("/scheduleByTherapist/:id", requireAuth, serviceController.getSchedulesByTherapist);
 
 module.exports = router;

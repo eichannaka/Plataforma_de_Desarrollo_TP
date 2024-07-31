@@ -1,22 +1,35 @@
 import React from 'react';
 import axios from 'axios';
 import './ScheduleItem.css';
+import { useAuth } from '../../../../contexts/AuthContext';
 
 const ScheduleItem = ({ schedule, onConfirm, onDelete }) => {
+    const { token } = useAuth();
     const handlerConfirmSchedule = async () => {
         try {
-            await axios.patch(`http://localhost:8888/scheduleConfirm/${schedule.turno_id}`, {
-                estado: 'confirmado'
-            });
+            await axios.patch(`http://localhost:8888/scheduleConfirm/${schedule.turno_id}`,
+                {
+                    estado: 'confirmado'
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
             onConfirm(schedule.turno_id);
         } catch (error) {
             console.error("Error confirming schedule: ", error);
         }
     };
 
+
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:8888/scheduleDelete/${schedule.turno_id}`);
+            await axios.delete(`http://localhost:8888/scheduleDelete/${schedule.turno_id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             onDelete(schedule.turno_id);
         } catch (error) {
             console.error("Error deleting schedule: ", error);

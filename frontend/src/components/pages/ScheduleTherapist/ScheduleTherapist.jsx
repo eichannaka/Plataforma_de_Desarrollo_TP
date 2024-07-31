@@ -4,7 +4,7 @@ import './ScheduleTherapist.css';
 import { useAuth } from '../../../contexts/AuthContext';
 
 const ScheduleTherapist = () => {
-    const { id ,firstName:nombreTerapeuta} = useAuth();
+    const { id, firstName: nombreTerapeuta, token } = useAuth();
     const [schedules, setSchedules] = useState([]);
     const [error, setError] = useState(null);
     const [therapistName, setTherapistName] = useState('');
@@ -12,7 +12,11 @@ const ScheduleTherapist = () => {
     useEffect(() => {
         const fetchSchedules = async () => {
             try {
-                const response = await axios.get(`http://localhost:8888/scheduleByTherapist/${id}`);
+                const response = await axios.get(`http://localhost:8888/scheduleByTherapist/${id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
                 setSchedules(response.data.results);
 
                 if (response.data.results.length > 0) {
@@ -31,8 +35,14 @@ const ScheduleTherapist = () => {
 
     const handleConfirm = async (id) => {
         try {
-            await axios.patch(`http://localhost:8888/scheduleConfirm/${id}`, {
+            await axios.patch(`http://localhost:8888/scheduleConfirm/${id}`, 
+            {
                 estado: 'confirmado'
+            }, 
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
             setSchedules(schedules.map(schedule =>
                 schedule.turno_id === id
@@ -44,16 +54,22 @@ const ScheduleTherapist = () => {
             setError(error);
         }
     };
+    
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8888/scheduleDelete/${id}`);
+            await axios.delete(`http://localhost:8888/scheduleDelete/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             setSchedules(schedules.filter(schedule => schedule.turno_id !== id));
         } catch (error) {
             console.error("Error deleting schedule: ", error);
             setError(error);
         }
     };
+    
 
     return (
         <div className="container mt-4">

@@ -28,10 +28,10 @@ exports.allSchedule = async () => {
 }
 
 // Crear un nuevo turno
-exports.create = async ({ usuario_id, terapeuta_id, service_id, fecha, hora, estado }) => {
+exports.createForPatient = async ({ usuario_id, terapeuta_id, service_id, fecha, hora, estado }) => {
     const query = `
         INSERT INTO turnos (usuario_id, terapeuta_id, service_id, fecha, hora, estado)
-        VALUES (?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, "pendiente")
     `;
     try {
         await connection.query(query, [usuario_id, terapeuta_id, service_id, fecha, hora, estado]);
